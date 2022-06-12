@@ -1,29 +1,33 @@
 const Cookies = require('js-cookie')
 
-const input = prompt("Username?");
+const username = prompt("Username?");
+console.log(`Hey ${username}`)
 
-Cookies.set('username', input);
-
-let guess = Number(prompt('Guess'))
+Cookies.set('username', username);
 
 let points = 0
- let x = 2
 
-const checkGuess = () => {
-  const range =  Math.floor(Math.random() * x) + 1;
-  if (guess === range) {
-    x++
+let range =2
+
+let guess = Number(prompt(`Guess the number between 1 and ${range} `))
+
+const checkGuess = (range) => {
+  
+  const number = Math.floor(Math.random() * range) + 1;
+  if (guess === number) {
     points++
     Cookies.set('points', points)
     console.log(`Correct guess`)
     console.log(`Points: ${points}`)
-   guess =  Number(prompt('Guess'))
-    checkGuess()
+    range++
+   guess =  Number(prompt(`Guess the number between 1 and ${range} `))
+    
+    checkGuess(range)
   } else
-    console.log('Wrong. Guess again.')
-   guess =  Number(prompt('Guess'))
-  checkGuess()
+    console.log(`Wrong. The answer was ${number}. Guess again.`)
+   guess =  Number(prompt(`Guess the number between 1 and ${range} `))
+  checkGuess(range)
 }
 
-checkGuess();
+checkGuess(range);
 
