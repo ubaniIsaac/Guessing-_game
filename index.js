@@ -7,7 +7,7 @@ Cookies.set('username', username);
 
 let points = 0
 
-let range =2
+let range = 2
 
 let guess = Number(prompt(`Guess the number between 1 and ${range} `))
 
